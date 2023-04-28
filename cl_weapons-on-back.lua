@@ -10,9 +10,11 @@ ESX = nil
 --     88888P' 888  888  "Y8888   "Y8888   88888P' 888  888    --
 ----------------------------------------------------------------- 
 
+local QBCore = exports['qb-core']:GetCoreObject()
+
 Citizen.CreateThread(function()
     while ESX == nil do
-        ESX = exports['es_extended']:getSharedObject()
+        ESX = exports['qb-core']:GetCoreObject()
         Citizen.Wait(0)
     end
 end)
@@ -65,9 +67,14 @@ local attached_weapons = {}
 Citizen.CreateThread(function()
     Wait(500)
     -- check if player is laoded
-    while not ESX.IsPlayerLoaded() do
-        Wait(100)
+    local player = QBCore.Functions.GetPlayerData()
+    while player == nil do 
+        player = QBCore.Functions.GetPlayerData()
+        Wait(500)
     end
+    -- while not ESX.IsPlayerLoaded() do
+    --     Wait(100)
+    -- end
     local oldme = 0
     while true do
         local me = GetPlayerPed(-1)
