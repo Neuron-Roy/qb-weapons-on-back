@@ -72,9 +72,6 @@ Citizen.CreateThread(function()
         player = QBCore.Functions.GetPlayerData()
         Wait(500)
     end
-    -- while not ESX.IsPlayerLoaded() do
-    --     Wait(100)
-    -- end
     local oldme = 0
     while true do
         local me = GetPlayerPed(-1)
